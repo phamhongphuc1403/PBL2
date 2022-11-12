@@ -1,10 +1,11 @@
-#include<iostream>
-#include<string>
+#include "info.h"
 #include "car.h"
+#include "customer.h"
+#include "linked_list.h"
+
 using namespace std;
-int main()
-{
-	Car X("no name", "asdd", "askdkad", 0, 0, 0);
-	X.Set();
-	X.Show();
+
+int main() {
+	LinkedList receipts("receipt.txt");
+
 }

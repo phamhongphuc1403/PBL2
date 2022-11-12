@@ -128,13 +128,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="car.cpp" />
+    <ClCompile Include="info.cpp" />
+    <ClCompile Include="linked_list.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="customer.h" />
+    <ClInclude Include="date.h" />
+    <ClInclude Include="info.h" />
     <ClInclude Include="car.h" />
+    <ClInclude Include="linked_list.h" />
+    <ClInclude Include="node.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="carInfo.txt" />
+    <Text Include="car_info.txt" />
+    <Text Include="receipt.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
