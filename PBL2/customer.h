@@ -1,20 +1,26 @@
 #pragma once
 
-#ifndef CUSTOMNER_H
+#ifndef CUSTOMER_H
 #define CUSTOMER_H
 
-#include "info.h"
-#include "date.h"
 
-class Customer : public Info {
+
+#include "node.h"
+//#include "linked_list.h"
+using namespace std;
+class Customer: public Node {
 private:
-	int numberOfTickets;
-	Date bookingDate;
-	std::string bookingCarID, destination;
+	std::string fullName, phoneNumber, bookedSeats;
+	//Date bookingDate;
+	std::string carID, destination, bookingDate;
+	Customer* next;
 public:
-	virtual void readFile(std::ifstream&);
-	virtual void writeFile(std::ofstream&);
-	virtual void printFile();
-	virtual void get();
+	Customer(std::string, std::string, std::string, std::string, std::string, std::string);
+	Customer(const Customer&);
+	friend class CustomerLinkedList;
+	friend std::ostream& operator << (std::ostream& , const Customer&);
+	friend std::ostream& operator << (std::ostream&, const CustomerLinkedList&);
+	friend std::istream& operator >> (std::istream&, CustomerLinkedList&);
+
 };
 #endif
