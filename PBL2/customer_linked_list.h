@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef LINKEDLIST_H
-#define LINKEDLIST_H
+#ifndef CUSTOMERLINKEDLIST_H
+#define CUSTOMERLINKEDLIST_H
 
 #include "customer.h"
 #include <string>
@@ -13,7 +13,7 @@ public:
     CustomerLinkedList(std::string);
     friend std::ostream& operator << (std::ostream&, const CustomerLinkedList&);
     friend std::istream& operator >> (std::istream&, CustomerLinkedList&);
-    void writeFile();
+    void writeFile(std::string);
     /*
     void addTail(double n) {
         Node* node = new Node(n);
@@ -24,9 +24,7 @@ public:
             tail->next = node;
         }
         tail = node;
-    }
-
-    friend void operator << (ostream&, const Set&);*/
+    };*/
 };
 
 #endif

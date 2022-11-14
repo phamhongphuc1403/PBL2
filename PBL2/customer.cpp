@@ -12,7 +12,7 @@ Customer::Customer(const Customer& customer) {
 	bookedSeats = customer.bookedSeats;
 	destination = customer.destination;
 	carID = customer.carID;
-	bookingDate = bookingDate;
+	bookingDate = customer.bookingDate;
 	this->next = customer.next;
 }
 ostream& operator << (ostream& out, const Customer& customer) {

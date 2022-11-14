@@ -18,8 +18,8 @@ CustomerLinkedList::CustomerLinkedList(string fileName) {
 		input.seekg(1, ios::cur);
 		getline(input, carID, ',');
 		input.seekg(1, ios::cur);
-		getline(input, date , '\n');
-			
+		getline(input, date, '\n');
+		//cout << fullName << phoneNumber << bookedSeats << destination << carID << date << endl;
 		if (head == NULL) {
 			head = new Customer(fullName, phoneNumber, bookedSeats, destination, carID, date);
 		} else {
@@ -48,12 +48,14 @@ istream& operator >> (istream& in, CustomerLinkedList& customerLinkedList) {
 	//Date bookingDate;
 	string carID, destination, bookingDate;
 	cout << "Nhap thong tin khach hang moi." << endl;
-	cout << "Nhap ten." << endl;
+	cout << "Nhap ten: ";
 	getline(in, fullName);
 	cout << "Nhap so dien thoai: "; in >> phoneNumber;
 	cout << "Nhap Vao So Luong Ve dat"; in >> bookedSeats;
-	cout << "Nhap diem den: "; in >> destination;
-	cout << "Nhap loai xe :"; in >> carID;
+	cout << "Nhap diem den: ";
+	in.ignore();
+	getline(in, destination);
+	cout << "Nhap bien so xe :"; in >> carID;
 	cout << "Nhap Vao Ngay: "; in >> bookingDate;
 ;
 	Customer *newCustomer = new Customer(fullName, phoneNumber, bookedSeats, destination, carID, bookingDate);
@@ -61,15 +63,20 @@ istream& operator >> (istream& in, CustomerLinkedList& customerLinkedList) {
 		customerLinkedList.head = newCustomer;
 	} else {
 		Customer *temp = new Customer(*customerLinkedList.head);
-		cout << "head cu" << * temp << endl;
-
 		customerLinkedList.head = newCustomer;
-		cout << "head moi" << *newCustomer << endl;
 		customerLinkedList.head->next = temp;
 	}
 	return in;
 }
 
-void CustomerLinkedList::writeFile() {
-	
+void CustomerLinkedList::writeFile(string fileName) {
+	fstream output;
+	output.open(fileName, ios::out);
+	Customer *customerNode = head;
+	while (customerNode != NULL) {
+		output << customerNode->fullName << ", " << customerNode->phoneNumber << ", " << customerNode->bookedSeats << ", " << customerNode->destination
+			<< ", " << customerNode->carID << ", " << customerNode->bookingDate << endl;
+		customerNode = customerNode->next;
+	}
+	output.close();
 }

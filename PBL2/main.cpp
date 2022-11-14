@@ -1,4 +1,5 @@
 #include "car.h"
+#include "car_linked_list.h"
 #include "customer.h"
 #include "customer_linked_list.h"
 #include <chrono>
@@ -7,7 +8,10 @@
 using namespace std;
 
 int main() {
-	CustomerLinkedList receipt("receipt.txt");
+	//CustomerLinkedList receipt("receipt.txt");
+
+	CarLinkedList car("car.txt");
+
 	
 
     //auto start = std::chrono::system_clock::now();
@@ -21,8 +25,9 @@ int main() {
     //    << "elapsed time: " << elapsed_seconds.count() << "s"
     //    << std::endl;
 
-	cin >> receipt;
-	cout << receipt;
+	//cin >> receipt;
+	//cout << receipt;
+	//receipt.writeFile("receipt.txt");
 
 	//int n, chon, a;
 	//string pn;
