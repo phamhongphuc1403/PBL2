@@ -12,7 +12,6 @@ class CustomerLinkedList;
 class Customer: public Node {
 private:
 	std::string fullName, phoneNumber, bookedSeats;
-	//Date bookingDate;
 	std::string carID, destination, bookingDate;
 	Customer* next;
 public:
@@ -22,6 +21,5 @@ public:
 	friend std::ostream& operator << (std::ostream& , const Customer&);
 	friend std::ostream& operator << (std::ostream&, const CustomerLinkedList&);
 	friend std::istream& operator >> (std::istream&, CustomerLinkedList&);
-
 };
 #endif

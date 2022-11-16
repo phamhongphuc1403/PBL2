@@ -38,16 +38,27 @@ CarLinkedList::CarLinkedList(string fileName) {
 		//	cout << departureTimeArray[i] << ' ';
 		//}
 		// 
-		//if (head == NULL) {
-		//	head = new Car(carID, capacity, destination, price, carID, departureTimeCount, departureTimeArray);
-		//}
-		//else {
-		//	Customer* tempNode = head;
-		//	while (tempNode->next != NULL) {
-		//		tempNode = tempNode->next;
-		//	}
-		//	tempNode->next = new Customer(fullName, phoneNumber, bookedSeats, destination, carID, date);
-		//}
+		if (head == NULL) {
+			head = new Car(carID, capacity, destination, price, departureTimeCount, departureTimeArray);
+		}
+		else {
+			Car* tempNode = head;
+			while (tempNode->next != NULL) {
+				tempNode = tempNode->next;
+			}
+			tempNode->next = new Car(carID, capacity, destination, price, departureTimeCount, departureTimeArray);
+		}
 	}
 	input.close();
+}
+
+ostream& operator << (ostream& out, const CarLinkedList& carLinkedList) {
+	if (carLinkedList.head != NULL) {
+		Car* car = carLinkedList.head;
+		while (car != NULL) {
+			out << *car;
+			car = car->next;
+		}
+	}
+	return out;
 }
