@@ -20,9 +20,6 @@ CarLinkedList::CarLinkedList(string fileName) {
 		input.seekg(1, ios::cur);
 		getline(input, temp, '\n');
 
-		cout << carID << ", " << capacity << ", " << destination
-			<< ", " << price << ", " << temp << endl;
-
 		int departureTime = 0;
 		for (int i = 0; i <= temp.length(); i++) {
 			if (temp[i] - '0' >= 0) {
@@ -33,11 +30,7 @@ CarLinkedList::CarLinkedList(string fileName) {
 				}
 				departureTime = 0;
 			}
-		}
-		//for (int i = 0; i < departureTimeCount; i++) {
-		//	cout << departureTimeArray[i] << ' ';
-		//}
-		// 
+		} 
 		if (head == NULL) {
 			head = new Car(carID, capacity, destination, price, departureTimeCount, departureTimeArray);
 		}
@@ -61,4 +54,13 @@ ostream& operator << (ostream& out, const CarLinkedList& carLinkedList) {
 		}
 	}
 	return out;
+}
+
+void CarLinkedList::printAvailableCars(string destination, string bookingDate) {
+	Car *car = head;
+	while (car != NULL) {
+		if (car->destination == destination) {
+
+		}
+	}
 }

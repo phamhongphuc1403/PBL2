@@ -132,6 +132,8 @@
     <ClCompile Include="customer.cpp" />
     <ClCompile Include="customer_linked_list.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="schedule.cpp" />
+    <ClCompile Include="schedule_linked_list.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car_linked_list.h" />
@@ -139,6 +141,8 @@
     <ClInclude Include="car.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="customer_linked_list.h" />
+    <ClInclude Include="schedule.h" />
+    <ClInclude Include="schedule_linked_list.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="car.txt" />

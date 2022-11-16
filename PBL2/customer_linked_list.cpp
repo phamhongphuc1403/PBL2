@@ -1,6 +1,9 @@
 #include "customer_linked_list.h"
 #include "customer.h"
-
+#include "car_linked_list.h"
+#include "car.h"
+#include "schedule_linked_list.h"
+#include "schedule.h"
 
 using namespace std;
 
@@ -45,19 +48,27 @@ ostream& operator << (ostream& out, const CustomerLinkedList& customerLinkedList
 
 istream& operator >> (istream& in, CustomerLinkedList& customerLinkedList) {
 	string fullName, phoneNumber, bookedSeats;
-	//Date bookingDate;
 	string carID, destination, bookingDate;
+	CarLinkedList cars("car.txt");
+	ScheduleLinkedList schedule("schedule.txt");
+
+	cars.printAvailableCars(destination, bookingDate);
+
 	cout << "Nhap thong tin khach hang moi." << endl;
 	cout << "Nhap ten: ";
 	getline(in, fullName);
 	cout << "Nhap so dien thoai: "; in >> phoneNumber;
-	cout << "Nhap Vao So Luong Ve dat"; in >> bookedSeats;
 	cout << "Nhap diem den: ";
 	in.ignore();
 	getline(in, destination);
-	cout << "Nhap bien so xe :"; in >> carID;
 	cout << "Nhap Vao Ngay: "; in >> bookingDate;
-;
+
+	Schedule* scheduleNode = schedule.head;
+	Car* carNode = cars.head;
+	
+
+	cout << "Nhap Vao So Luong Ve dat"; in >> bookedSeats;
+
 	Customer *newCustomer = new Customer(fullName, phoneNumber, bookedSeats, destination, carID, bookingDate);
 	if (customerLinkedList.head == NULL) {
 		customerLinkedList.head = newCustomer;

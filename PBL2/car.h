@@ -6,12 +6,12 @@
 
 
 #include "node.h"
-//class CustomerLinkedList;
+class CarLinkedList;
 
 class Car : public Node {
 private:
 	std::string carID, capacity, destination, price;
-	int* departureTime;
+	int* departureTime, departureTimeCount;
 	Car* next;
 public:
 	Car(std::string, std::string, std::string, std::string, int, int*);
