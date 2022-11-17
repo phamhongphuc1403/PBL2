@@ -11,8 +11,8 @@ class CustomerLinkedList;
 
 class Customer: public Node {
 private:
-	std::string fullName, phoneNumber, bookedSeats;
-	std::string carID, destination, bookingDate;
+	std::string fullName, phoneNumber, carID, destination, bookingDate;
+	int bookedSeats;
 	Customer* next;
 public:
 	Customer(std::string, std::string, std::string, std::string, std::string, std::string);

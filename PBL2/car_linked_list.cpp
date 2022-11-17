@@ -1,5 +1,6 @@
 #include "car_linked_list.h"
 #include "car.h"
+#include "schedule_linked_list.h"
 
 using namespace std;
 
@@ -57,10 +58,28 @@ ostream& operator << (ostream& out, const CarLinkedList& carLinkedList) {
 }
 
 void CarLinkedList::printAvailableCars(string destination, string bookingDate) {
-	Car *car = head;
-	while (car != NULL) {
-		if (car->destination == destination) {
-
+	ScheduleLinkedList scheduleList("schedule.txt");
+	Car* carNode = head;
+	Schedule* scheduleNode = scheduleList.head;
+	int order = 0;
+	while (carNode != NULL) {
+		if (carNode->destination == destination) {
+			for (int i = 0; i < carNode->departureTimeCount; i++) {
+				while (scheduleNode != NULL) {
+					if (scheduleNode->carID == carNode->carID &&
+						scheduleNode->departmentTime == carNode->departureTime[i] &&
+						scheduleNode->departmentDate == bookingDate) {
+						if (scheduleNode->bookedSeats < carNode->capacity) {
+							carNode->printCar(++order, scheduleNode->departmentTime,
+								scheduleNode->departmentDate,
+								scheduleNode->bookedSeats);
+						}
+					}
+					scheduleNode = scheduleNode->next;
+				}
+				scheduleNode = scheduleList.head;
+			}
 		}
+		carNode = carNode->next;
 	}
 }

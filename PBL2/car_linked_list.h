@@ -5,7 +5,7 @@
 
 #include "car.h"
 #include <string>
-
+class CustomerLinkedList;
 class CarLinkedList {
 private:
     Car* head;

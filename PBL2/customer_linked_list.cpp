@@ -52,7 +52,7 @@ istream& operator >> (istream& in, CustomerLinkedList& customerLinkedList) {
 	CarLinkedList cars("car.txt");
 	ScheduleLinkedList schedule("schedule.txt");
 
-	cars.printAvailableCars(destination, bookingDate);
+	
 
 	cout << "Nhap thong tin khach hang moi." << endl;
 	cout << "Nhap ten: ";
@@ -63,8 +63,10 @@ istream& operator >> (istream& in, CustomerLinkedList& customerLinkedList) {
 	getline(in, destination);
 	cout << "Nhap Vao Ngay: "; in >> bookingDate;
 
-	Schedule* scheduleNode = schedule.head;
-	Car* carNode = cars.head;
+	//Schedule* scheduleNode = schedule.head;
+	//Car* carNode = cars.head;
+
+	cars.printAvailableCars(destination, bookingDate);
 	
 
 	cout << "Nhap Vao So Luong Ve dat"; in >> bookedSeats;

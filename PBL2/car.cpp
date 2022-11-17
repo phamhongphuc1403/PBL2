@@ -3,7 +3,7 @@
 using namespace std;
 
 Car::Car(string carID, string capacity, string destination, string price, int departureTimeCount, int* departureTimeArray)
-:carID(carID), capacity(capacity), destination(destination), price(price), departureTimeCount(departureTimeCount) {
+:carID(carID), capacity(stoi(capacity)), destination(destination), price(stoi(price)), departureTimeCount(departureTimeCount) {
 	this->departureTime = new int[departureTimeCount];
 	
 	for (int i = 0; i < departureTimeCount; i++) {
@@ -21,4 +21,8 @@ ostream& operator << (ostream& out, const Car& car) {
 	out << car.departureTime[car.departureTimeCount - 1] << endl;
 	return out;
 }
+
+void Car::printCar(int order, int departmentTime, string departmentDate, int bookedSeats) {
+	cout << "stt: " << order << ", bien so xe : " << carID << ", gio xuat phat : " << departmentTime << ", so luong ve dat : " << bookedSeats << '/' << capacity << endl;
+};
 
