@@ -61,21 +61,31 @@ void CarLinkedList::printAvailableCars(string destination, string bookingDate) {
 	ScheduleLinkedList scheduleList("schedule.txt");
 	Car* carNode = head;
 	Schedule* scheduleNode = scheduleList.head;
-	int order = 0;
+	int order = 0, capacity = 0;
+	bool isFull = false;
+
 	while (carNode != NULL) {
 		if (carNode->destination == destination) {
 			for (int i = 0; i < carNode->departureTimeCount; i++) {
+				isFull = false;
+				capacity = 0;
 				while (scheduleNode != NULL) {
 					if (scheduleNode->carID == carNode->carID &&
 						scheduleNode->departmentTime == carNode->departureTime[i] &&
 						scheduleNode->departmentDate == bookingDate) {
-						if (scheduleNode->bookedSeats < carNode->capacity) {
-							carNode->printCar(++order, scheduleNode->departmentTime,
-								scheduleNode->departmentDate,
-								scheduleNode->bookedSeats);
+						capacity = scheduleNode->bookedSeats;
+						if (scheduleNode->bookedSeats >= carNode->capacity) {
+							//cout << "cho ngoi " << scheduleNode->bookedSeats << endl;
+							isFull = true;
+							break;
 						}
-					}
+					}					
 					scheduleNode = scheduleNode->next;
+				}
+				if (!isFull) {
+					carNode->printCar(++order, carNode->departureTime[i],
+						bookingDate,
+						capacity);
 				}
 				scheduleNode = scheduleList.head;
 			}

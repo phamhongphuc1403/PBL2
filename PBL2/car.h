@@ -9,7 +9,7 @@
 class CarLinkedList;
 
 class Car : public Node {
-private:
+protected:
 	std::string carID, destination;
 	int* departureTime, departureTimeCount, capacity, price;
 	Car* next;

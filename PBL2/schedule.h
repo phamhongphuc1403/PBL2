@@ -6,7 +6,7 @@
 #include "node.h"
 
 class Schedule {
-private:
+protected:
 	std::string carID, departmentDate;
 	int departmentTime, bookedSeats;
 	Schedule* next;
