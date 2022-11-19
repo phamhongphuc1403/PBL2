@@ -7,6 +7,7 @@
 
 class AvailableCarsLinkedList {
 	AvailableCars* head;
-
+public:
+	AvailableCarsLinkedList(int, std::string, int, std::string, int);
 };
 #endif

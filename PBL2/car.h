@@ -15,6 +15,7 @@ protected:
 	Car* next;
 public:
 	Car(std::string, std::string, std::string, std::string, int, int*);
+	Car();
 	friend class CarLinkedList;
 	friend std::ostream& operator << (std::ostream&, const Car&);
 	friend std::ostream& operator << (std::ostream&, const CarLinkedList&);

@@ -127,6 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="available_cars.cpp" />
+    <ClCompile Include="available_cars_linked_list.cpp" />
     <ClCompile Include="car.cpp" />
     <ClCompile Include="car_linked_list.cpp" />
     <ClCompile Include="customer.cpp" />

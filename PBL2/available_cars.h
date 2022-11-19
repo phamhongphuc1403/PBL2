@@ -7,7 +7,9 @@
 #include "schedule.h"
 #include "node.h"
 class AvailableCars: public Car, Schedule {
+private:
+	int order;
 public:
-	AvailableCars(std::string, int, std::string, int);
+	AvailableCars(int, std::string, int, std::string, int);
 };
 #endif

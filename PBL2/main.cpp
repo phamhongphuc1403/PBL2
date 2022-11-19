@@ -3,8 +3,8 @@
 #include "customer.h"
 #include "customer_linked_list.h"
 #include <chrono>
-#include <ctime>   
-#pragma warning(disable : 4996)
+#include <ctime>
+//#pragma warning(disable : 4996)
 using namespace std;
 
 int main() {
