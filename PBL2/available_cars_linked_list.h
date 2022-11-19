@@ -3,11 +3,13 @@
 #ifndef AVAILABLECARSLINKEDLIST_H
 #define AVAILABLECARSLINKEDLIST_H
 
-#include "available_cars.h"
+#include "available_car.h"
 
 class AvailableCarsLinkedList {
-	AvailableCars* head;
+private:
+	AvailableCar* head;
 public:
-	AvailableCarsLinkedList(int, std::string, int, std::string, int);
+	AvailableCarsLinkedList(std::string, std::string);
+	friend std::ostream& operator << (std::ostream&, const AvailableCarsLinkedList&);
 };
 #endif

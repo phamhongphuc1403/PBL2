@@ -22,7 +22,4 @@ ostream& operator << (ostream& out, const Car& car) {
 	return out;
 }
 
-void Car::printCar(int order, int departmentTime, string departmentDate, int bookedSeats) {
-	cout << "stt: " << order << ", bien so xe : " << carID << ", gio xuat phat : " << departmentTime << ", so luong ve dat : " << bookedSeats << '/' << capacity << endl;
-};
 

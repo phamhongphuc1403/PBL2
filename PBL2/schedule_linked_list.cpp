@@ -4,26 +4,26 @@ using namespace std;
 
 ScheduleLinkedList::ScheduleLinkedList(string fileName) {
 	ifstream input(fileName);
-	string carID, departmentDate, departmentTime, bookedSeats;
+	string carID, departureDate, departureTime, bookedSeats;
 
 	while (!input.eof()) {
 		getline(input, carID, ',');
 		input.seekg(1, ios::cur);
-		getline(input, departmentTime, ',');
+		getline(input, departureTime, ',');
 		input.seekg(1, ios::cur);
-		getline(input, departmentDate, ',');
+		getline(input, departureDate, ',');
 		input.seekg(1, ios::cur);
 		getline(input, bookedSeats, '\n');
 
 		if (head == NULL) {
-			head = new Schedule(carID, departmentTime, departmentDate, bookedSeats);
+			head = new Schedule(carID, departureTime, departureDate, bookedSeats);
 		}
 		else {
 			Schedule* tempNode = head;
 			while (tempNode->next != NULL) {
 				tempNode = tempNode->next;
 			}
-			tempNode->next = new Schedule(carID, departmentTime, departmentDate, bookedSeats);
+			tempNode->next = new Schedule(carID, departureTime, departureDate, bookedSeats);
 		}
 	}
 	input.close();

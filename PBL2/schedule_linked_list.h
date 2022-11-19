@@ -10,6 +10,7 @@ private:
 public:
 	ScheduleLinkedList(std::string);
 	friend std::istream& operator >> (std::istream&, CustomerLinkedList&);
-	friend class CarLinkedList;
+	friend class AvailableCarsLinkedList;
+
 };
 #endif

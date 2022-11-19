@@ -4,6 +4,7 @@
 #include "car.h"
 #include "schedule_linked_list.h"
 #include "schedule.h"
+#include "available_cars_linked_list.h"
 
 using namespace std;
 
@@ -66,8 +67,9 @@ istream& operator >> (istream& in, CustomerLinkedList& customerLinkedList) {
 	//Schedule* scheduleNode = schedule.head;
 	//Car* carNode = cars.head;
 
-	cars.printAvailableCars(destination, bookingDate);
-	
+
+	AvailableCarsLinkedList availableCarsLinkedList(destination, bookingDate);
+	cout << availableCarsLinkedList;
 
 	cout << "Nhap Vao So Luong Ve dat"; in >> bookedSeats;
 

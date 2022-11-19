@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="available_cars.cpp" />
+    <ClCompile Include="available_car.cpp" />
     <ClCompile Include="available_cars_linked_list.cpp" />
     <ClCompile Include="car.cpp" />
     <ClCompile Include="car_linked_list.cpp" />
@@ -138,7 +138,7 @@
     <ClCompile Include="schedule_linked_list.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="available_cars.h" />
+    <ClInclude Include="available_car.h" />
     <ClInclude Include="available_cars_linked_list.h" />
     <ClInclude Include="car_linked_list.h" />
     <ClInclude Include="customer.h" />

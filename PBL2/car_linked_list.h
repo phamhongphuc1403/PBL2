@@ -14,6 +14,7 @@ public:
     friend std::ostream& operator << (std::ostream&, const CarLinkedList&);
     friend std::istream & operator >> (std::istream&, CustomerLinkedList&);
     void printAvailableCars(std::string, std::string);
+    friend class AvailableCarsLinkedList;
     //friend std::istream& operator >> (std::istream&, CustomerLinkedList&);
     //void writeFile(std::string);
 };
