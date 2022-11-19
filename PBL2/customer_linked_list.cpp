@@ -48,32 +48,27 @@ ostream& operator << (ostream& out, const CustomerLinkedList& customerLinkedList
 }
 
 istream& operator >> (istream& in, CustomerLinkedList& customerLinkedList) {
-	string fullName, phoneNumber, bookedSeats;
+	string fullName, phoneNumber, bookingSeats;
 	string carID, destination, bookingDate;
-	CarLinkedList cars("car.txt");
-	ScheduleLinkedList schedule("schedule.txt");
 
-	
-
-	cout << "Nhap thong tin khach hang moi." << endl;
-	cout << "Nhap ten: ";
-	getline(in, fullName);
-	cout << "Nhap so dien thoai: "; in >> phoneNumber;
+	//cout << "Nhap thong tin khach hang moi." << endl;
+	//cout << "Nhap ten: ";
+	//getline(in, fullName);
+	//cout << "Nhap so dien thoai: "; in >> phoneNumber;
 	cout << "Nhap diem den: ";
-	in.ignore();
+	//in.ignore();
 	getline(in, destination);
-	cout << "Nhap Vao Ngay: "; in >> bookingDate;
+	cout << "Nhap ngay: "; in >> bookingDate;
 
 	//Schedule* scheduleNode = schedule.head;
 	//Car* carNode = cars.head;
+	cout << "Nhap so luong ve muon mua: "; in >> bookingSeats;
 
-
-	AvailableCarsLinkedList availableCarsLinkedList(destination, bookingDate);
+	AvailableCarsLinkedList availableCarsLinkedList(destination, bookingDate, stoi(bookingSeats));
 	cout << availableCarsLinkedList;
 
-	cout << "Nhap Vao So Luong Ve dat"; in >> bookedSeats;
 
-	Customer *newCustomer = new Customer(fullName, phoneNumber, bookedSeats, destination, carID, bookingDate);
+	Customer *newCustomer = new Customer(fullName, phoneNumber, bookingSeats, destination, carID, bookingDate);
 	if (customerLinkedList.head == NULL) {
 		customerLinkedList.head = newCustomer;
 	} else {

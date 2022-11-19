@@ -4,26 +4,26 @@
 
 using namespace std;
 
-AvailableCarsLinkedList::AvailableCarsLinkedList(string destination, string departureDate) {
+AvailableCarsLinkedList::AvailableCarsLinkedList(string destination, string departureDate, int bookingSeats) {
 	ScheduleLinkedList scheduleList("schedule.txt");
 	Schedule* scheduleNode = scheduleList.head;
 	CarLinkedList carList("car.txt");
 	Car* carNode = carList.head;
-	int order = 0, capacity = 0;
+	int order = 0, bookedSeats = 0;
 	bool isFull = false;
 
 	while (carNode != NULL) {
 		if (carNode->destination == destination) {
 			for (int i = 0; i < carNode->departureTimeCount; i++) {
 				isFull = false;
-				capacity = 0;
+				bookedSeats = 0;
 				while (scheduleNode != NULL) {
 					if (scheduleNode->carID == carNode->carID &&
 						scheduleNode->departureTime == carNode->departureTime[i] &&
 						scheduleNode->departureDate == departureDate) {
-						capacity = scheduleNode->bookedSeats;
-						if (scheduleNode->bookedSeats >= carNode->capacity) {
-							//cout << "cho ngoi " << scheduleNode->bookedSeats << endl;
+						bookedSeats = scheduleNode->bookedSeats;
+
+						if (scheduleNode->bookedSeats + bookingSeats > carNode->capacity) {
 							isFull = true;
 							break;
 						}
@@ -31,15 +31,28 @@ AvailableCarsLinkedList::AvailableCarsLinkedList(string destination, string depa
 					scheduleNode = scheduleNode->next;
 				}
 				if (!isFull) {
+					AvailableCar *newNode = new AvailableCar(carNode->carID, carNode->departureTime[i], departureDate, bookedSeats, carNode->capacity);
 					if (head == NULL) {
-						head = new AvailableCar(++order, carNode->carID, carNode->departureTime[i], departureDate, capacity);
-					}
-					else {
-						AvailableCar* tempNode = head;
-						while (tempNode->next != NULL) {
-							tempNode = tempNode->next;
+						head = newNode;
+					} else {
+						if (head->Schedule::departureTime > newNode->Schedule::departureTime) {
+							newNode->next = head;
+							head = newNode;
+						} else {
+							AvailableCar* tempNode = head;
+							while (tempNode != NULL) {
+								if (tempNode->next == NULL) {
+									tempNode->next = newNode;
+									break;
+								} else if (tempNode->next->Schedule::departureTime > newNode->Schedule::departureTime) {
+									newNode->next = tempNode->next;
+									tempNode->next = newNode;
+									break;
+								} else {
+									tempNode = tempNode->next;
+								}
+							}
 						}
-						tempNode->next = new AvailableCar(++order, carNode->carID, carNode->departureTime[i], departureDate, capacity);
 					}
 				}
 				scheduleNode = scheduleList.head;
@@ -50,8 +63,10 @@ AvailableCarsLinkedList::AvailableCarsLinkedList(string destination, string depa
 }
 
 ostream& operator << (ostream& out, const AvailableCarsLinkedList& availableCarsLinkedList) {
+	int order = 0;
 	AvailableCar *carNode = availableCarsLinkedList.head;
 	while (carNode != NULL) {
+		carNode->order = ++order;
 		out << *carNode;
 		carNode = carNode->next;
 	}

@@ -16,12 +16,11 @@ protected:
 	Car* next;
 public:
 	Car(std::string, std::string, std::string, std::string, int, int*);
-	Car();
+	Car() {};
 	friend class CarLinkedList;
 	friend class AvailableCarsLinkedList;
 
 	friend std::ostream& operator << (std::ostream&, const Car&);
 	friend std::ostream& operator << (std::ostream&, const CarLinkedList&);
-	void printCar(int, int, std::string, int);
 };
 #endif
