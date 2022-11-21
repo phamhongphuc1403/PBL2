@@ -11,5 +11,6 @@ private:
 public:
 	AvailableCarsLinkedList(std::string, std::string, int);
 	friend std::ostream& operator << (std::ostream&, const AvailableCarsLinkedList&);
+	AvailableCar getNode(int);
 };
 #endif

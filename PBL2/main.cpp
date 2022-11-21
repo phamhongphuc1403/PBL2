@@ -9,7 +9,7 @@ using namespace std;
 
 int main() {
 	CustomerLinkedList receipt("receipt.txt");
-
+	cout << receipt;
 	//CarLinkedList car("car.txt");
 	//cout << car;
 	
@@ -26,8 +26,6 @@ int main() {
     //    << std::endl;
 
 	cin >> receipt;
-	//cout << receipt;
-	//receipt.writeFile("receipt.txt");
 
 	//int n, chon, a;
 	//string pn;

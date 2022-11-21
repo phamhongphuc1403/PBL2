@@ -14,7 +14,7 @@ public:
 	friend class ScheduleLinkedList;
 	friend class AvailableCarsLinkedList;
 
-	Schedule(std::string, std::string, std::string, std::string);
+	Schedule(std::string, int, std::string, int);
 	Schedule() {};
 };
 #endif

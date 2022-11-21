@@ -31,7 +31,7 @@ AvailableCarsLinkedList::AvailableCarsLinkedList(string destination, string depa
 					scheduleNode = scheduleNode->next;
 				}
 				if (!isFull) {
-					AvailableCar *newNode = new AvailableCar(carNode->carID, carNode->departureTime[i], departureDate, bookedSeats, carNode->capacity);
+					AvailableCar *newNode = new AvailableCar(carNode->carID, carNode->departureTime[i], departureDate, bookedSeats, carNode->capacity , carNode->price);
 					if (head == NULL) {
 						head = newNode;
 					} else {
@@ -71,4 +71,12 @@ ostream& operator << (ostream& out, const AvailableCarsLinkedList& availableCars
 		carNode = carNode->next;
 	}
 	return out;
+}
+
+AvailableCar AvailableCarsLinkedList::getNode(int choice) {
+	AvailableCar *tempNode = head;
+	while (tempNode->order != choice && tempNode != NULL) {
+		tempNode = tempNode->next;
+	}
+	return *tempNode;
 }

@@ -1,5 +1,4 @@
 #include "car.h"
-#include<array> 
 using namespace std;
 
 Car::Car(string carID, string capacity, string destination, string price, int departureTimeCount, int* departureTimeArray)
@@ -21,5 +20,3 @@ ostream& operator << (ostream& out, const Car& car) {
 	out << car.departureTime[car.departureTimeCount - 1] << endl;
 	return out;
 }
-
-

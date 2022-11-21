@@ -12,11 +12,13 @@ class Car : public Node {
 protected:
 	std::string carID, destination;
 	int* departureTime;
-	int departureTimeCount, capacity, price;
+	int departureTimeCount, capacity;
+	long long price;
 	Car* next;
 public:
 	Car(std::string, std::string, std::string, std::string, int, int*);
 	Car() {};
+	void getPrice(std::string);
 	friend class CarLinkedList;
 	friend class AvailableCarsLinkedList;
 

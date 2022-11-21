@@ -10,7 +10,7 @@ using namespace std;
 
 CustomerLinkedList::CustomerLinkedList(string fileName) {
 	ifstream input(fileName);
-	string fullName, destination, carID, phoneNumber, date, bookedSeats;
+	string fullName, destination, carID, phoneNumber, date, bookedSeats, totalPrice;
 	while (!input.eof()) {
 		getline(input, fullName, ',');
 		input.seekg(1, ios::cur);
@@ -22,16 +22,19 @@ CustomerLinkedList::CustomerLinkedList(string fileName) {
 		input.seekg(1, ios::cur);
 		getline(input, carID, ',');
 		input.seekg(1, ios::cur);
-		getline(input, date, '\n');
+		getline(input, date, ',');
+		input.seekg(1, ios::cur);
+		getline(input, totalPrice, '\n');
 		//cout << fullName << phoneNumber << bookedSeats << destination << carID << date << endl;
+		Customer *newNode = new Customer(fullName, phoneNumber, stoi(bookedSeats), destination, carID, date, stoll(totalPrice));
 		if (head == NULL) {
-			head = new Customer(fullName, phoneNumber, bookedSeats, destination, carID, date);
+			head = newNode;
 		} else {
 			Customer* tempNode = head;
 			while (tempNode->next != NULL) {
 				tempNode = tempNode->next;
 			}
-			tempNode->next = new Customer(fullName, phoneNumber, bookedSeats, destination, carID, date);
+			tempNode->next = newNode;
 		}
 	}
 }
@@ -48,27 +51,36 @@ ostream& operator << (ostream& out, const CustomerLinkedList& customerLinkedList
 }
 
 istream& operator >> (istream& in, CustomerLinkedList& customerLinkedList) {
-	string fullName, phoneNumber, bookingSeats;
-	string carID, destination, bookingDate;
+	ScheduleLinkedList scheduleLinkedList("schedule.txt");
+	CarLinkedList carLinkedList("car.txt");
 
-	//cout << "Nhap thong tin khach hang moi." << endl;
-	//cout << "Nhap ten: ";
-	//getline(in, fullName);
-	//cout << "Nhap so dien thoai: "; in >> phoneNumber;
+	string fullName, phoneNumber;
+	string destination, departureDate;
+	int choice, bookingSeats;
+
+	cout << "Nhap thong tin khach hang moi." << endl;
 	cout << "Nhap diem den: ";
-	//in.ignore();
 	getline(in, destination);
-	cout << "Nhap ngay: "; in >> bookingDate;
-
-	//Schedule* scheduleNode = schedule.head;
-	//Car* carNode = cars.head;
+	cout << "Nhap ngay khoi hanh: "; in >> departureDate;
 	cout << "Nhap so luong ve muon mua: "; in >> bookingSeats;
 
-	AvailableCarsLinkedList availableCarsLinkedList(destination, bookingDate, stoi(bookingSeats));
+	AvailableCarsLinkedList availableCarsLinkedList(destination, departureDate, bookingSeats);
 	cout << availableCarsLinkedList;
 
+	cout << "nhap so thu tu xe muon chon: "; in >> choice;
+	AvailableCar selectedCar = availableCarsLinkedList.getNode(choice);
 
-	Customer *newCustomer = new Customer(fullName, phoneNumber, bookingSeats, destination, carID, bookingDate);
+	cout << "xe da chon: "; cout << selectedCar;
+	cout << "Nhap ten: ";
+	in.ignore();
+	getline(in, fullName);
+	cout << "Nhap so dien thoai: "; in >> phoneNumber;
+
+	string carID = selectedCar.getCarID();
+	
+	Customer *newCustomer = new Customer(fullName, phoneNumber, bookingSeats, destination, carID, departureDate, 
+		carLinkedList.getPrice(carID) * bookingSeats);
+	
 	if (customerLinkedList.head == NULL) {
 		customerLinkedList.head = newCustomer;
 	} else {
@@ -76,6 +88,11 @@ istream& operator >> (istream& in, CustomerLinkedList& customerLinkedList) {
 		customerLinkedList.head = newCustomer;
 		customerLinkedList.head->next = temp;
 	}
+	cout << *newCustomer;
+
+	customerLinkedList.writeFile("receipt.txt");
+	scheduleLinkedList.addNode(selectedCar, bookingSeats);
+
 	return in;
 }
 
@@ -83,10 +100,12 @@ void CustomerLinkedList::writeFile(string fileName) {
 	fstream output;
 	output.open(fileName, ios::out);
 	Customer *customerNode = head;
-	while (customerNode != NULL) {
+	while (customerNode->next != NULL) {
 		output << customerNode->fullName << ", " << customerNode->phoneNumber << ", " << customerNode->bookedSeats << ", " << customerNode->destination
-			<< ", " << customerNode->carID << ", " << customerNode->bookingDate << endl;
+			<< ", " << customerNode->carID << ", " << customerNode->departureDate << ", " << customerNode->totalPrice << endl;
 		customerNode = customerNode->next;
 	}
+	output << customerNode->fullName << ", " << customerNode->phoneNumber << ", " << customerNode->bookedSeats << ", " << customerNode->destination
+		<< ", " << customerNode->carID << ", " << customerNode->departureDate << ", " << customerNode->totalPrice;
 	output.close();
 }

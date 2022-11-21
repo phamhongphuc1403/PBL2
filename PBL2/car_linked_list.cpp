@@ -55,3 +55,11 @@ ostream& operator << (ostream& out, const CarLinkedList& carLinkedList) {
 	}
 	return out;
 }
+
+long long CarLinkedList::getPrice(string carID) {
+	Car *carNode = head;
+	while (carNode != NULL) {
+		if (carNode->carID == carID) return carNode->price;
+		carNode = carNode->next;
+	}
+}

@@ -2,18 +2,26 @@
 
 using namespace std;
 
-AvailableCar::AvailableCar(string carID, int departureTime, string departureDate, int bookedSeats, int capacity):Car(), Schedule() {
-	this->Car::carID = carID;
+AvailableCar::AvailableCar(string carID, int departureTime, string departureDate, int bookedSeats, int capacity, long long price):Car(), Schedule() {
+	this->Schedule::carID = carID;
 	this->Schedule::departureTime = departureTime;
-	this->departureDate = departureDate;
+	this->Schedule::departureDate = departureDate;
 	this->bookedSeats = bookedSeats;
 	this->capacity = capacity;
+	this->price = price;
 	this->next = NULL;
+	//cout << ". bien so xe: " << Schedule::carID
+	//	<< ", gio xuat phat: " << Schedule::departureTime << ", so luong ve da dat: "
+	//	<< bookedSeats << '/' << capacity << ", gia tien: " << price << endl;
 }
 
 ostream& operator << (ostream& out, const AvailableCar& availableCar) {
-	out << availableCar.order << ". bien so xe: " << availableCar.Car::carID 
-		<< ", gio xuat phat: " << availableCar.Schedule::departureTime << ", so luong ve dat : " 
-		<< availableCar.bookedSeats << '/' << availableCar.capacity << endl;
+	out << availableCar.order << ". bien so xe: " << availableCar.Schedule::carID
+		<< ", gio xuat phat: " << availableCar.Schedule::departureTime << ", so luong ve da dat: " 
+		<< availableCar.bookedSeats << '/' << availableCar.capacity << ", gia tien: " << availableCar.price << endl;
 	return out;
+}
+
+string AvailableCar::getCarID() {
+	return this->Schedule::carID;
 }
