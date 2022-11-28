@@ -131,8 +131,9 @@
     <ClCompile Include="available_cars_linked_list.cpp" />
     <ClCompile Include="car.cpp" />
     <ClCompile Include="car_linked_list.cpp" />
-    <ClCompile Include="customer.cpp" />
-    <ClCompile Include="customer_linked_list.cpp" />
+    <ClCompile Include="date.cpp" />
+    <ClCompile Include="passenger.cpp" />
+    <ClCompile Include="passenger_linked_list.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="schedule.cpp" />
     <ClCompile Include="schedule_linked_list.cpp" />
@@ -141,10 +142,11 @@
     <ClInclude Include="available_car.h" />
     <ClInclude Include="available_cars_linked_list.h" />
     <ClInclude Include="car_linked_list.h" />
-    <ClInclude Include="customer.h" />
+    <ClInclude Include="date.h" />
+    <ClInclude Include="passenger.h" />
     <ClInclude Include="car.h" />
     <ClInclude Include="node.h" />
-    <ClInclude Include="customer_linked_list.h" />
+    <ClInclude Include="passenger_linked_list.h" />
     <ClInclude Include="schedule.h" />
     <ClInclude Include="schedule_linked_list.h" />
   </ItemGroup>

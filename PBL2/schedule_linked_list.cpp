@@ -31,8 +31,6 @@ ScheduleLinkedList::ScheduleLinkedList(string fileName) {
 
 void ScheduleLinkedList::addNode(AvailableCar availableCar, int bookingSeats) {
 	Schedule* newNode = &availableCar; //upcast
-	//cout << newNode->carID << ", " << newNode->departureTime << ", " << newNode->departureDate
-	//	<< ", " << newNode->bookedSeats << endl;
 	if (head == NULL) {
 		head = newNode;
 	} else {
@@ -47,6 +45,7 @@ void ScheduleLinkedList::addNode(AvailableCar availableCar, int bookingSeats) {
 			}
 		}
 		if (tempNode->next == NULL) {
+			newNode->Schedule::bookedSeats = bookingSeats;
 			tempNode->next = newNode;
 		}
 	}

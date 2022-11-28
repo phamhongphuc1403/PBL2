@@ -20,5 +20,6 @@ public:
 	friend std::ostream& operator << (std::ostream&, const AvailableCarsLinkedList&);
 	friend std::ostream& operator << (std::ostream&, const AvailableCar&);
 	std::string getCarID();
+	int getTime();
 };
 #endif

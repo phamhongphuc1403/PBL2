@@ -21,10 +21,10 @@
     <ClCompile Include="car.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="customer_linked_list.cpp">
+    <ClCompile Include="passenger_linked_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="customer.cpp">
+    <ClCompile Include="passenger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="car_linked_list.cpp">
@@ -42,15 +42,18 @@
     <ClCompile Include="available_car.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="date.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="customer.h">
+    <ClInclude Include="passenger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="customer_linked_list.h">
+    <ClInclude Include="passenger_linked_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="node.h">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="available_car.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

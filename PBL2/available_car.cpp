@@ -25,3 +25,6 @@ ostream& operator << (ostream& out, const AvailableCar& availableCar) {
 string AvailableCar::getCarID() {
 	return this->Schedule::carID;
 }
+int AvailableCar::getTime() {
+	return this->Schedule::departureTime;
+}

@@ -18,7 +18,6 @@ protected:
 public:
 	Car(std::string, std::string, std::string, std::string, int, int*);
 	Car() {};
-	void getPrice(std::string);
 	friend class CarLinkedList;
 	friend class AvailableCarsLinkedList;
 
