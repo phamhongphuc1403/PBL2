@@ -8,9 +8,9 @@ class Date{
 private:
     int day, month, year;
 public:
-    Date(std::string);
-    Date() {};
+    void setDate(std::string);
     void getCurrentDate();
+    friend std::ostream& operator << (std::ostream&, const Date&);
 };
 
 #endif

@@ -112,3 +112,18 @@ void PassengerLinkedList::writeFile(string fileName) {
 		<< ", " << passengerNode->carID << ", " << passengerNode->departureTime << ", " << passengerNode->departureDate << ", " << passengerNode->totalPrice;
 	output.close();
 }
+
+void PassengerLinkedList::findPassenger(string phoneNumber) {
+	Passenger* passengerNode = head;
+	bool isFound = false;
+	while (passengerNode != NULL) {
+		if (passengerNode->phoneNumber == phoneNumber) {
+			cout << *passengerNode;
+			isFound = true;
+		}
+		passengerNode = passengerNode->next;
+	}
+	if (!isFound) {
+		cout << "Khong tim thay hanh khach." << endl;
+	}
+}

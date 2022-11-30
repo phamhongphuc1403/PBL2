@@ -16,8 +16,10 @@ public:
     void printAvailableCars(std::string, std::string);
     friend class AvailableCarsLinkedList;
     //friend std::istream& operator >> (std::istream&, CustomerLinkedList&);
-    //void writeFile(std::string);
+    void writeFile(std::string);
     long long getPrice(std::string);
+    void findCar(std::string);
+    void editCar(std::string);
 };
 
 #endif
