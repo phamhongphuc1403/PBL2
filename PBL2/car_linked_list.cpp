@@ -117,14 +117,15 @@ void CarLinkedList::editCar(string carID) {
 			do {
 				cout << "Nhap thoi gian khoi hanh (0 - 23): "; cin >> temp;
 				for (int i = 0; i < 3; i++) {
+					isSuitable = true;
 					if (carNode->destination == requiredTime[i][0]) {
 						for (int j = 0; j < departureTimeCount; j++) {
-							if (abs(temp - departureTimeArray[j]) < stoi(requiredTime[i][1])) {
+							if (abs(temp - departureTimeArray[j]) < stoi(requiredTime[i][1]) || abs(temp - 24 - departureTimeArray[j]) < stoi(requiredTime[i][1])) {
 								isSuitable = false;
 							}
 						}
 						if (isSuitable) {
-							departureTimeArray[++departureTimeCount] = temp;
+							departureTimeArray[departureTimeCount++] = temp;
 						}
 						else {
 							cout << "Xe chua kip ve ben." << endl;
@@ -133,7 +134,7 @@ void CarLinkedList::editCar(string carID) {
 					}
 				}
 				cout << "Ban co muon nhap tiep khong? (Y/N): "; cin >> answer;
-				if (answer == "Y") {
+				if (answer == "Y" || answer == "y") {
 					continue;
 				} else {
 					break;
