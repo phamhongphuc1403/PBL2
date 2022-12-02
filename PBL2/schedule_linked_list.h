@@ -5,6 +5,8 @@
 
 class PassengerLinkedList;
 class AvailableCar;
+class Car;
+
 class ScheduleLinkedList {
 private:
 	Schedule* head;
@@ -14,5 +16,6 @@ public:
 	friend class AvailableCarsLinkedList;
 	void addNode(AvailableCar, int);
 	void writeFile(std::string);
+	//void reschedule(Car);
 };
 #endif

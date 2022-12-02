@@ -15,15 +15,17 @@ ScheduleLinkedList::ScheduleLinkedList(string fileName) {
 		getline(input, departureDate, ',');
 		input.seekg(1, ios::cur);
 		getline(input, bookedSeats, '\n');
+
+		Schedule *newNode = new Schedule(carID, stoi(departureTime), departureDate, stoi(bookedSeats));
 		if (head == NULL) {
-			head = new Schedule(carID, stoi(departureTime), departureDate, stoi(bookedSeats));
+			head = newNode;
 		}
 		else {
 			Schedule* tempNode = head;
 			while (tempNode->next != NULL) {
 				tempNode = tempNode->next;
 			}
-			tempNode->next = new Schedule(carID, stoi(departureTime), departureDate, stoi(bookedSeats));
+			tempNode->next = newNode;
 		}
 	}
 	input.close();
@@ -65,3 +67,23 @@ void ScheduleLinkedList::writeFile(string fileName) {
 		<< ", " << scheduleNode->bookedSeats;
 	output.close();
 }
+
+//void ScheduleLinkedList::reschedule(Car carNode) {
+//	Schedule* scheduleNode = head;
+//	bool isChanged = true;
+//	while (scheduleNode->next != NULL) {
+//		isChanged = true;
+//		if (scheduleNode->carID == carNode.carID) {
+//			for (int i = 0; i < carNode.departureTimeCount; i++) {
+//				if (scheduleNode->departureTime == carNode.departureTime[i]) {
+//					isChanged = false;
+//				}
+//			}
+//			if (isChanged) {
+//				scheduleNode->bookedSeats = 0;
+//			}
+//		}
+//		scheduleNode = scheduleNode->next;
+//	}
+//	writeFile("schedule.txt");
+//}

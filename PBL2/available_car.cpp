@@ -2,7 +2,7 @@
 
 using namespace std;
 
-AvailableCar::AvailableCar(string carID, int departureTime, string departureDate, int bookedSeats, int capacity, long long price):Car(), Schedule() {
+AvailableCar::AvailableCar(string carID, int departureTime, string departureDate, int bookedSeats, int capacity, long long price) {
 	this->Schedule::carID = carID;
 	this->Schedule::departureTime = departureTime;
 	this->Schedule::departureDate = departureDate;

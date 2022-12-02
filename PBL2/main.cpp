@@ -7,14 +7,14 @@
 using namespace std;
 
 int main() {
-	//PassengerLinkedList receipt("receipt.txt");
-	//cout << receipt;
+	PassengerLinkedList receipt("receipt.txt");
 	CarLinkedList car("car.txt");
-	cout << car;
-	car.editCar("43B.0001");
-	cout << car;
+	//cout << car;
+	//car.editCar("43B.0001");
+	//cout << car;
+
 	//receipt.findPassenger("1");
-	//cin >> receipt;
+	cin >> receipt;
 
 	//int n, chon, a;
 	//string pn;
@@ -28,5 +28,5 @@ int main() {
 	//	cout << "7: Tim xe theo bien so xe." << endl;
 	//	cout << "8: Sua thong tin xe." << endl;
 	//	cout << "0: Thoat Chuong Trinh." << endl;
-		//cout << "Moi nhap lua chon cua ban :"; cin >> chon;
+	//cout << "Moi nhap lua chon cua ban:"; cin >> chon;
 }

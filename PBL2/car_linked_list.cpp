@@ -31,15 +31,16 @@ CarLinkedList::CarLinkedList(string fileName) {
 				departureTime = 0;
 			}
 		} 
+		Car *newCar = new Car(carID, capacity, destination, price, departureTimeCount, departureTimeArray);
 		if (head == NULL) {
-			head = new Car(carID, capacity, destination, price, departureTimeCount, departureTimeArray);
+			head = newCar;
 		}
 		else {
 			Car* tempNode = head;
 			while (tempNode->next != NULL) {
 				tempNode = tempNode->next;
 			}
-			tempNode->next = new Car(carID, capacity, destination, price, departureTimeCount, departureTimeArray);
+			tempNode->next = newCar;
 		}
 	}
 	input.close();
@@ -97,23 +98,17 @@ void CarLinkedList::editCar(string carID) {
 		int choice;
 		int departureTimeArray[5] = { 0, 0, 0, 0, 0 }, departureTimeCount = 0;
 		string str;
-		string requiredTime[3][2] = { {"Hue", "5"}, {"Ha Noi", "20"},{"TP HCM", "20"} };
+		string requiredTime[3][2] = { {"Hue", "6"}, {"Ha Noi", "20"},{"TP HCM", "20"} };
 		int temp;
 		bool isSuitable = true;
 		string answer;
 
-		cout << "1. Chinh sua diem den" << endl;
-		cout << "2. Chinh sua gio khoi hanh" << endl;
+		cout << "1. Chinh sua gio khoi hanh" << endl;
 		cout << "3. Chinh sua gia tien" << endl;
 		cout << "ban chon: "; cin >> choice;
 
 		switch (choice) {
 		case 1:
-			cout << "Nhap diem den (Ha Noi/Hue/TP HCM): "; 
-			cin.ignore();
-			getline(cin, str);
-			carNode->setDestination(str);
-		case 2:
 			do {
 				cout << "Nhap thoi gian khoi hanh (0 - 23): "; cin >> temp;
 				for (int i = 0; i < 3; i++) {
@@ -141,7 +136,8 @@ void CarLinkedList::editCar(string carID) {
 				}
 			} while (true);
 			carNode->setDepartureTime(departureTimeCount, departureTimeArray);
-		case 3:
+			break;
+		case 2:
 			cout << "Nhap gia tien moi: "; cin >> str;
 			carNode->setPrice(stoll(str));
 			break;
