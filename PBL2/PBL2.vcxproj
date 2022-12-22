@@ -133,6 +133,7 @@
     <ClCompile Include="car.cpp" />
     <ClCompile Include="car_linked_list.cpp" />
     <ClCompile Include="date.cpp" />
+    <ClCompile Include="handle_regex.cpp" />
     <ClCompile Include="passenger.cpp" />
     <ClCompile Include="passenger_linked_list.cpp" />
     <ClCompile Include="main.cpp" />
@@ -145,9 +146,9 @@
     <ClInclude Include="bus_company_management_app.h" />
     <ClInclude Include="car_linked_list.h" />
     <ClInclude Include="date.h" />
+    <ClInclude Include="handle_regex.h" />
     <ClInclude Include="passenger.h" />
     <ClInclude Include="car.h" />
-    <ClInclude Include="node.h" />
     <ClInclude Include="passenger_linked_list.h" />
     <ClInclude Include="schedule.h" />
     <ClInclude Include="schedule_linked_list.h" />

@@ -7,10 +7,12 @@
 
 class AvailableCarsLinkedList {
 private:
+	int numOfCars;
 	AvailableCar* head;
 public:
 	AvailableCarsLinkedList(std::string, std::string, int);
-	friend std::ostream& operator << (std::ostream&, const AvailableCarsLinkedList&);
+	friend std::ostream& operator << (std::ostream&, AvailableCarsLinkedList&);
 	AvailableCar getNode(int);
+	int getNumOfCars();
 };
 #endif

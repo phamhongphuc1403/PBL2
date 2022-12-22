@@ -5,6 +5,7 @@
 #include "schedule_linked_list.h"
 #include "schedule.h"
 #include "available_cars_linked_list.h"
+#include "handle_regex.h"
 using namespace std;
 
 PassengerLinkedList::PassengerLinkedList(string fileName) {
@@ -28,7 +29,6 @@ PassengerLinkedList::PassengerLinkedList(string fileName) {
 		getline(input, departureDate, ',');
 		input.seekg(1, ios::cur);
 		getline(input, totalPrice, '\n');
-		//cout << fullName << phoneNumber << bookedSeats << destination << carID << date << endl;
 		Passenger *newNode = new Passenger(fullName, phoneNumber, bookingDate, stoi(bookedSeats), destination, carID, stoi(time), departureDate, stoll(totalPrice));
 		if (head == NULL) {
 			head = newNode;
@@ -56,6 +56,23 @@ ostream& operator << (ostream& out, const PassengerLinkedList& passengerLinkedLi
 	return out;
 }
 
+void check(string str1, string& str2, bool (* function)(string)) {
+	do {
+		cout << str1;
+		getline(cin, str2);
+		if (function(str2)) {
+			break;
+		}
+		else {
+			cout << str2 << " ";
+			cout << "sai cu phap." << endl;
+		}
+	} while (true);
+}
+bool abc(string a) {
+	return a == "Ha Noi" || a == "Hue" || a == "TP HCM";
+}
+
 istream& operator >> (istream& in, PassengerLinkedList& passengerLinkedList) {
 	ScheduleLinkedList scheduleLinkedList("schedule.txt");
 	CarLinkedList carLinkedList("car.txt");
@@ -65,25 +82,20 @@ istream& operator >> (istream& in, PassengerLinkedList& passengerLinkedList) {
 	int choice, bookingSeats;
 
 	cout << "Nhap thong tin khach hang moi." << endl;
-	cout << "Nhap diem den: ";
-	getline(in, destination);
-	cout << "Nhap ngay khoi hanh: "; in >> departureDate;
+	HandleRegex("Nhap diem den (Ha Noi / Hue / TP HCM): ", destination, &HandleRegex::checkDestination);
+	HandleRegex("Nhap ngay khoi hanh: ", departureDate, &HandleRegex::checkDepartureDate);
 	cout << "Nhap so luong ve muon mua: "; in >> bookingSeats;
 
 	AvailableCarsLinkedList availableCarsLinkedList(destination, departureDate, bookingSeats);
 	cout << availableCarsLinkedList;
-
-	cout << "nhap so thu tu xe muon chon: "; in >> choice;
+	int numOfCars = availableCarsLinkedList.getNumOfCars();
+	HandleRegex("Nhap so thu tu xe muon chon: ", choice, &HandleRegex::checkSelectChoice, numOfCars);
 	AvailableCar selectedCar = availableCarsLinkedList.getNode(choice);
 
 	string carID = selectedCar.getCarID();
 
-	//cout << "xe da chon: "; cout << selectedCar;
-	string c;
-	cout << "So tien can thanh toan: " << carLinkedList.getPrice(carID) * bookingSeats << ". Tiep tuc? (Y/N): "; cin >> c;
-	if (c == "N" || c == "n") {
-		cout << "\033[2J\033[1;1H";
-
+	cout << "So tien can thanh toan: " << carLinkedList.getPrice(carID) * bookingSeats;
+	if (!HandleRegex::checkYN(". Tiep tuc? (Y/N): ")) {
 		return in;
 	}
 	cout << "Nhap ten: ";

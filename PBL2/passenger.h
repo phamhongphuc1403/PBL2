@@ -3,13 +3,14 @@
 #ifndef PASSENGER_H
 #define PASSENGER_H
 
-
-
-#include "node.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <iomanip>
 #include "date.h"
 class PassengerLinkedList;
 
-class Passenger: public Node {
+class Passenger {
 private:
 	std::string fullName, phoneNumber, carID, destination;
 	Date departureDate, bookingDate;

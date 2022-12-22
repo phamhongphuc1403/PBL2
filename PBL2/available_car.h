@@ -5,7 +5,10 @@
 
 #include "car.h"
 #include "schedule.h"
-#include "node.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <iomanip>
 
 class AvailableCarsLinkedList;
 
@@ -17,7 +20,7 @@ public:
 	AvailableCar(std::string, int, std::string, int, int, long long);
 	friend class AvailableCarsLinkedList;
 	friend class ScheduleLinkedList;
-	friend std::ostream& operator << (std::ostream&, const AvailableCarsLinkedList&);
+	friend std::ostream& operator << (std::ostream&, AvailableCarsLinkedList&);
 	friend std::ostream& operator << (std::ostream&, const AvailableCar&);
 	std::string getCarID();
 	int getTime();

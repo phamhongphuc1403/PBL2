@@ -3,7 +3,10 @@
 #ifndef SCHEDULE_H
 #define SCHEDULE_H
 
-#include "node.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <iomanip>
 #include "date.h"
 
 class Schedule {

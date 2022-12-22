@@ -40,14 +40,15 @@ void App::run() {
 		case 0:
 			break;
 		default:
-			cout << "sai cu phap, moi ban nhap lai";
+			cout << "Sai cu phap, moi ban nhap lai" << endl;
 		} 
 		clearScreen();
 	} while (chon);
 }
 
 void App::clearScreen() {
-	cout << "\033[2J\033[1;1H";
+	//cout << "\033[2J\033[1;1H";
+	system("cls");
 }
 
 void App::passengersManager() {
@@ -60,7 +61,7 @@ void App::passengersManager() {
 		cout << "1. Them hoa don. " << endl;
 		cout << "2. Xem lich su mua ve" << endl;
 		cout << "3. Tim hoa don theo so dien thoai" << endl;
-		cout << "0. quay lai" << endl;
+		cout << "0. Quay lai" << endl;
 		cout << "Moi nhap lua chon cua ban: "; cin >> chon;
 		clearScreen();
 		switch (chon) {
@@ -79,7 +80,7 @@ void App::passengersManager() {
 		case 0:
 			break;
 		default:
-			cout << "sai cu phap, moi ban nhap lai";
+			cout << "Sai cu phap, moi ban nhap lai." << endl;
 		}
 	} while (chon);
 }
@@ -103,20 +104,28 @@ void App::carsManager() {
 			cout << car;
 			break;
 		case 2:
-			cout << "Nhap thang: "; cin >> month;
-			car.printIncome(month);
+			do {
+				cout << "Nhap thang: "; cin >> month;
+				if (month <= 12 && month >= 1) {
+					car.printIncome(month);
+					break;
+				}
+				else {
+					cout << "Sai cu phap, moi ban nhap lai." << endl;
+				}
+			} while (true);
 			break;
 		case 3:
-			cout << "Nhap bien so xe: "; cin >> carID;
+			cout << "Nhap bien so xe can tim: "; cin >> carID;
 			car.findCar(carID);
 			break;
 		case 4:
-			cout << "Nhap bien so xe: "; cin >> carID;
+			cout << "Nhap bien so xe can sua: "; cin >> carID;
 			if (car.findCar(carID)) car.editCar(carID);
 		case 0:
 			break;
 		default:
-			cout << "sai cu phap, moi ban nhap lai";
+			cout << "Sai cu phap, moi ban nhap lai." << endl;
 		}
 	} while (chon);
 }

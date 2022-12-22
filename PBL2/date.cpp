@@ -1,10 +1,17 @@
 #include "date.h"
-#include "node.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <iomanip>
 #include <chrono>
 #include <ctime>
 #pragma warning(disable : 4996)
 
 using namespace std;
+
+Date::Date(string str) {
+	setDate(str);
+}
 
 void Date::setDate(string str) {
 	string tempDay, tempMonth, tempYear;
@@ -26,7 +33,7 @@ void Date::setDate(string str) {
 	year = stoi(tempYear);
 }
 
-void Date::getCurrentDate() {
+void Date::setCurrentDate() {
    auto end = std::chrono::system_clock::now();
    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
    string str = std::ctime(&end_time);
@@ -71,4 +78,44 @@ string Date::toString() {
 
 int Date::getMonth() {
 	return month;
+}
+
+bool isLeap(int year) {
+	return (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0));
+}
+
+bool Date::isValid() {
+	if (month < 1 || month > 12) return false;
+	if (day < 1 || day > 31) return false;
+	if (month == 2)	{
+		if (isLeap(year)) {
+			return (day <= 29);
+		} else {
+			return (day <= 28);
+		}
+	}
+	if (month == 4 || month == 6 ||	month == 9 || month == 11) return (day <= 30);
+	return true;
+}
+
+bool Date::operator >= (const Date& date) {
+	try {
+		if (year < date.year) {
+			throw false;
+		}
+		else if (year == date.year) {
+			if (month < date.month) {
+				throw false;
+			}
+			else if (month == date.month) {
+				if (day < date.day) {
+					throw false;
+				}
+			}
+		}
+	} catch (bool e) {
+		cout << "Ngay xuat phat khong duoc nho hon ngay hien tai." << endl;
+		return e;
+	}
+	return true;
 }

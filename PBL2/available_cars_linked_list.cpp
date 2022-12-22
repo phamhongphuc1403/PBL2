@@ -9,8 +9,7 @@ AvailableCarsLinkedList::AvailableCarsLinkedList(string destination, string depa
 	Schedule* scheduleNode = scheduleList.head;
 	CarLinkedList carList("car.txt");
 	Car* carNode = carList.head;
-	Date date;
-	date.setDate(departureDate);
+	Date date(departureDate);
 	int order = 0, bookedSeats = 0;
 	bool isFull = false;
 
@@ -64,7 +63,7 @@ AvailableCarsLinkedList::AvailableCarsLinkedList(string destination, string depa
 	}
 }
 
-ostream& operator << (ostream& out, const AvailableCarsLinkedList& availableCarsLinkedList) {
+ostream& operator << (ostream& out, AvailableCarsLinkedList& availableCarsLinkedList) {
 	int order = 0;
 	AvailableCar *carNode = availableCarsLinkedList.head;
 	out << setiosflags(ios::left) << setw(10) << "STT" << setiosflags(ios::left) << setw(15) << "Bien so xe"
@@ -75,6 +74,7 @@ ostream& operator << (ostream& out, const AvailableCarsLinkedList& availableCars
 		out << *carNode;
 		carNode = carNode->next;
 	}
+	availableCarsLinkedList.numOfCars = order;
 	return out;
 }
 
@@ -84,4 +84,8 @@ AvailableCar AvailableCarsLinkedList::getNode(int choice) {
 		tempNode = tempNode->next;
 	}
 	return *tempNode;
+}
+
+int AvailableCarsLinkedList::getNumOfCars() {
+	return numOfCars;
 }

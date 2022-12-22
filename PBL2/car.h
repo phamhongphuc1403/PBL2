@@ -3,12 +3,14 @@
 #ifndef CAR_H
 #define CAR_H
 
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <iomanip>
 
-
-#include "node.h"
 class CarLinkedList;
 
-class Car : public Node {
+class Car {
 protected:
 	std::string carID, destination;
 	int* departureTime;

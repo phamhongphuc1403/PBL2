@@ -7,7 +7,7 @@ Passenger::Passenger(string fullName, string phoneNumber, string bookingDate, in
 	carID(carID), departureTime(departureTime), totalPrice(totalPrice) {
 	this->departureDate = departureDate;
 	if (bookingDate == "") {
-		this->bookingDate.getCurrentDate();
+		this->bookingDate.setCurrentDate();
 	}
 	else {
 		this->bookingDate = bookingDate;
