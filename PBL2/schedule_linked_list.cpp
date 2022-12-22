@@ -47,8 +47,14 @@ void ScheduleLinkedList::addNode(AvailableCar availableCar, int bookingSeats) {
 			}
 		}
 		if (tempNode->next == NULL) {
-			newNode->Schedule::bookedSeats = bookingSeats;
-			tempNode->next = newNode;
+			if (tempNode->carID == newNode->carID && tempNode->departureTime == newNode->departureTime &&
+				tempNode->departureDate == newNode->departureDate) {
+				tempNode->bookedSeats += bookingSeats;
+			}
+			else {
+				newNode->Schedule::bookedSeats = bookingSeats;
+				tempNode->next = newNode;
+			}
 		}
 	}
 	writeFile("schedule.txt");

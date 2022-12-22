@@ -56,7 +56,6 @@ ostream& operator << (ostream& out, const PassengerLinkedList& passengerLinkedLi
 	return out;
 }
 
-
 istream& operator >> (istream& in, PassengerLinkedList& passengerLinkedList) {
 	ScheduleLinkedList scheduleLinkedList("schedule.txt");
 	CarLinkedList carLinkedList("car.txt");
