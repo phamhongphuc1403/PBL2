@@ -56,22 +56,6 @@ ostream& operator << (ostream& out, const PassengerLinkedList& passengerLinkedLi
 	return out;
 }
 
-void check(string str1, string& str2, bool (* function)(string)) {
-	do {
-		cout << str1;
-		getline(cin, str2);
-		if (function(str2)) {
-			break;
-		}
-		else {
-			cout << str2 << " ";
-			cout << "sai cu phap." << endl;
-		}
-	} while (true);
-}
-bool abc(string a) {
-	return a == "Ha Noi" || a == "Hue" || a == "TP HCM";
-}
 
 istream& operator >> (istream& in, PassengerLinkedList& passengerLinkedList) {
 	ScheduleLinkedList scheduleLinkedList("schedule.txt");
