@@ -1,7 +1,7 @@
 #include "available_cars_linked_list.h"
 #include "schedule_linked_list.h"
 #include "car_linked_list.h"
-
+//#include "date.h"
 using namespace std;
 
 AvailableCarsLinkedList::AvailableCarsLinkedList(string destination, string departureDate, int bookingSeats) {
@@ -9,6 +9,8 @@ AvailableCarsLinkedList::AvailableCarsLinkedList(string destination, string depa
 	Schedule* scheduleNode = scheduleList.head;
 	CarLinkedList carList("car.txt");
 	Car* carNode = carList.head;
+	Date date;
+	date.setDate(departureDate);
 	int order = 0, bookedSeats = 0;
 	bool isFull = false;
 
@@ -20,7 +22,7 @@ AvailableCarsLinkedList::AvailableCarsLinkedList(string destination, string depa
 				while (scheduleNode != NULL) {
 					if (scheduleNode->carID == carNode->carID &&
 						scheduleNode->departureTime == carNode->departureTime[i] &&
-						scheduleNode->departureDate == departureDate) {
+						scheduleNode->departureDate == date) {
 						bookedSeats = scheduleNode->bookedSeats;
 
 						if (scheduleNode->bookedSeats + bookingSeats > carNode->capacity) {
@@ -65,6 +67,9 @@ AvailableCarsLinkedList::AvailableCarsLinkedList(string destination, string depa
 ostream& operator << (ostream& out, const AvailableCarsLinkedList& availableCarsLinkedList) {
 	int order = 0;
 	AvailableCar *carNode = availableCarsLinkedList.head;
+	out << setiosflags(ios::left) << setw(10) << "STT" << setiosflags(ios::left) << setw(15) << "Bien so xe"
+		<< setiosflags(ios::left) << setw(20) << "Gio khoi hanh" << setiosflags(ios::left) << setw(20)
+		<< "So ghe da dat" << "Gia tien" << endl;
 	while (carNode != NULL) {
 		carNode->order = ++order;
 		out << *carNode;

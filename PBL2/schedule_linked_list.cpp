@@ -59,11 +59,11 @@ void ScheduleLinkedList::writeFile(string fileName) {
 	output.open(fileName, ios::out);
 	Schedule* scheduleNode = head;
 	while (scheduleNode->next != NULL) {
-		output << scheduleNode->carID << ", " << scheduleNode->departureTime << ", " << scheduleNode->departureDate 
+		output << scheduleNode->carID << ", " << scheduleNode->departureTime << ", " << scheduleNode->departureDate.toString()
 			<< ", "  << scheduleNode->bookedSeats << endl;
 		scheduleNode = scheduleNode->next;
 	}
-	output << scheduleNode->carID << ", " << scheduleNode->departureTime << ", " << scheduleNode->departureDate
+	output << scheduleNode->carID << ", " << scheduleNode->departureTime << ", " << scheduleNode->departureDate.toString()
 		<< ", " << scheduleNode->bookedSeats;
 	output.close();
 }

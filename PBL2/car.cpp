@@ -7,11 +7,12 @@ Car::Car(string carID, string capacity, string destination, string price, int de
 	for (int i = 0; i < departureTimeCount; i++) {
 		this->departureTime[i] = departureTimeArray[i];
 	}
+	this->next = NULL;
 }
 
 ostream& operator << (ostream& out, const Car& car) {
-	out << "Bien so xe: " << car.carID << ", so cho ngoi: " << car.capacity << ", diem den: " << car.destination
-		<< ", gia tien: " << car.price << ", Gio xuat phat trong ngay: ";
+	out << setiosflags(ios::left) << setw(15) << car.carID << setiosflags(ios::left) << setw(15) << car.capacity << setiosflags(ios::left) << setw(15) << car.destination
+		<< setiosflags(ios::left) << setw(15) << car.price;
 
 	for (int i = 0; i < car.departureTimeCount - 1; i++) {
 		out << car.departureTime[i] << "h, ";

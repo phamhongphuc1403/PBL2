@@ -11,6 +11,10 @@ public:
     void setDate(std::string);
     void getCurrentDate();
     friend std::ostream& operator << (std::ostream&, const Date&);
+    void operator = (std::string);
+    bool operator == (const Date&);
+    std::string toString();
+    int getMonth();
 };
 
 #endif

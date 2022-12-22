@@ -16,6 +16,6 @@ public:
 	friend class AvailableCarsLinkedList;
 	void addNode(AvailableCar, int);
 	void writeFile(std::string);
-	//void reschedule(Car);
+	friend class CarLinkedList;
 };
 #endif

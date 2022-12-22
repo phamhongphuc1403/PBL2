@@ -1,5 +1,7 @@
 #include "car_linked_list.h"
 #include "car.h"
+#include "schedule_linked_list.h"
+#include "schedule.h"
 
 using namespace std;
 
@@ -47,6 +49,9 @@ CarLinkedList::CarLinkedList(string fileName) {
 }
 
 ostream& operator << (ostream& out, const CarLinkedList& carLinkedList) {
+	out << setiosflags(ios::left) << setw(15) << "Bien so xe" << setiosflags(ios::left) << setw(15) << "So cho" << setiosflags(ios::left) << setw(15) << "Diem den"
+		<< setiosflags(ios::left) << setw(15) << "Gia tien" << "Gio xuat phat trong ngay" << endl;
+
 	if (carLinkedList.head != NULL) {
 		Car* car = carLinkedList.head;
 		while (car != NULL) {
@@ -65,11 +70,13 @@ long long CarLinkedList::getPrice(string carID) {
 	}
 }
 
-void CarLinkedList::findCar(string carID) {
+bool CarLinkedList::findCar(string carID) {
 	Car* carNode = head;
 	bool isFound = false;
 	while (carNode != NULL) {
 		if (carNode->carID == carID) {
+			cout << setiosflags(ios::left) << setw(15) << "Bien so xe" << setiosflags(ios::left) << setw(15) << "So cho" << setiosflags(ios::left) << setw(15) << "Diem den"
+				<< setiosflags(ios::left) << setw(15) << "Gia tien" << "Gio xuat phat trong ngay" << endl;
 			cout << *carNode;
 			isFound = true;
 			break;
@@ -78,7 +85,9 @@ void CarLinkedList::findCar(string carID) {
 	}
 	if (!isFound) {
 		cout << "Khong tim thay xe." << endl;
+		return false;
 	}
+	return true;
 }
 
 void CarLinkedList::editCar(string carID) {
@@ -104,7 +113,7 @@ void CarLinkedList::editCar(string carID) {
 		string answer;
 
 		cout << "1. Chinh sua gio khoi hanh" << endl;
-		cout << "3. Chinh sua gia tien" << endl;
+		cout << "2. Chinh sua gia tien" << endl;
 		cout << "ban chon: "; cin >> choice;
 
 		switch (choice) {
@@ -141,6 +150,8 @@ void CarLinkedList::editCar(string carID) {
 			cout << "Nhap gia tien moi: "; cin >> str;
 			carNode->setPrice(stoll(str));
 			break;
+		default:
+			cout << "sai cu phap." << endl;
 		}
 	}	
 	writeFile("car.txt");
@@ -164,4 +175,25 @@ void CarLinkedList::writeFile(string fileName) {
 	}
 	output << carNode->departureTime[carNode->departureTimeCount - 1];
 	output.close();
+}
+
+void CarLinkedList::printIncome(int month) {
+	long long sum = 0;
+	ScheduleLinkedList scheduleList("schedule.txt");
+	Car* carNode = head;
+	cout << setiosflags(ios::left) << setw(15) << "Bien so xe" << setiosflags(ios::left) << setw(15) << "So ve da dat" << setiosflags(ios::left) << setw(15) << "Doanh thu" << endl;
+	while (carNode != NULL) {
+		int count = 0;
+		Schedule* scheduleNode = scheduleList.head;
+		while (scheduleNode != NULL) {
+			if (scheduleNode->departureDate.getMonth() == month && scheduleNode->carID == carNode->carID) {
+				count = count + scheduleNode->bookedSeats;
+			}
+			scheduleNode = scheduleNode->next;
+		}
+		sum += carNode->price * count;
+		cout << setiosflags(ios::left) << setw(15) << carNode->carID << setiosflags(ios::left) << setw(15) << count << setiosflags(ios::left) << setw(15) << carNode->price * count << endl;
+		carNode = carNode->next;
+	}
+	cout << "Tong doanh thu thang " << month << ": " << sum << endl;
 }

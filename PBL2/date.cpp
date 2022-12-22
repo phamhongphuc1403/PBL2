@@ -30,7 +30,6 @@ void Date::getCurrentDate() {
    auto end = std::chrono::system_clock::now();
    std::time_t end_time = std::chrono::system_clock::to_time_t(end);
    string str = std::ctime(&end_time);
-   cout << str;
    string tempDay, tempMonth, tempYear;
 
    for (int i = 4; i < 7; i++) {
@@ -54,6 +53,22 @@ void Date::getCurrentDate() {
 }
 
 ostream& operator << (ostream& out, const Date& date) {
-	cout << date.day << "/" << date.month << "/" << date.year << endl;
+	cout << date.day << "/" << date.month << "/" << date.year;
 	return out;
+}
+
+void Date::operator = (string str) {
+	setDate(str);
+}
+
+bool Date::operator == (const Date& date) {
+	return date.day == day && date.month == month && date.year == year;
+}
+
+string Date::toString() {
+	return to_string(day) + "/" + to_string(month) + "/" + to_string(year);
+}
+
+int Date::getMonth() {
+	return month;
 }

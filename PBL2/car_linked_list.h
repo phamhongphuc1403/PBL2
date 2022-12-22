@@ -18,8 +18,9 @@ public:
     //friend std::istream& operator >> (std::istream&, PassengerLinkedList&);
     void writeFile(std::string);
     long long getPrice(std::string);
-    void findCar(std::string);
+    bool findCar(std::string);
     void editCar(std::string);
+    void printIncome(int);
 };
 
 #endif

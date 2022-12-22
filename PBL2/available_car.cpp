@@ -10,15 +10,11 @@ AvailableCar::AvailableCar(string carID, int departureTime, string departureDate
 	this->capacity = capacity;
 	this->price = price;
 	this->next = NULL;
-	//cout << ". bien so xe: " << Schedule::carID
-	//	<< ", gio xuat phat: " << Schedule::departureTime << ", so luong ve da dat: "
-	//	<< bookedSeats << '/' << capacity << ", gia tien: " << price << endl;
 }
 
 ostream& operator << (ostream& out, const AvailableCar& availableCar) {
-	out << availableCar.order << ". bien so xe: " << availableCar.Schedule::carID
-		<< ", gio xuat phat: " << availableCar.Schedule::departureTime << ", so luong ve da dat: " 
-		<< availableCar.bookedSeats << '/' << availableCar.capacity << ", gia tien: " << availableCar.price << endl;
+	out << setiosflags(ios::left) << setw(10) << availableCar.order << setiosflags(ios::left) << setw(15) << availableCar.Schedule::carID
+		<< setiosflags(ios::left) << setw(20) << availableCar.Schedule::departureTime << setiosflags(ios::left) << setw(2) << availableCar.bookedSeats << '/' << setiosflags(ios::left) << setw(20) << availableCar.capacity << availableCar.price << endl;
 	return out;
 }
 

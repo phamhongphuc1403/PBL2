@@ -5,16 +5,17 @@
 #include "schedule_linked_list.h"
 #include "schedule.h"
 #include "available_cars_linked_list.h"
-
 using namespace std;
 
 PassengerLinkedList::PassengerLinkedList(string fileName) {
 	ifstream input(fileName);
-	string fullName, destination, carID, phoneNumber, date, bookedSeats, totalPrice, time;
+	string fullName, destination, carID, bookingDate, phoneNumber, departureDate, bookedSeats, totalPrice, time;
 	while (!input.eof()) {
 		getline(input, fullName, ',');
 		input.seekg(1, ios::cur);
 		getline(input, phoneNumber, ',');
+		input.seekg(1, ios::cur);
+		getline(input, bookingDate, ',');
 		input.seekg(1, ios::cur);
 		getline(input, bookedSeats, ',');
 		input.seekg(1, ios::cur);
@@ -24,11 +25,11 @@ PassengerLinkedList::PassengerLinkedList(string fileName) {
 		input.seekg(1, ios::cur);
 		getline(input, time, ',');
 		input.seekg(1, ios::cur);
-		getline(input, date, ',');
+		getline(input, departureDate, ',');
 		input.seekg(1, ios::cur);
 		getline(input, totalPrice, '\n');
 		//cout << fullName << phoneNumber << bookedSeats << destination << carID << date << endl;
-		Passenger *newNode = new Passenger(fullName, phoneNumber, stoi(bookedSeats), destination, carID, stoi(time), date, stoll(totalPrice));
+		Passenger *newNode = new Passenger(fullName, phoneNumber, bookingDate, stoi(bookedSeats), destination, carID, stoi(time), departureDate, stoll(totalPrice));
 		if (head == NULL) {
 			head = newNode;
 		} else {
@@ -44,6 +45,9 @@ PassengerLinkedList::PassengerLinkedList(string fileName) {
 ostream& operator << (ostream& out, const PassengerLinkedList& passengerLinkedList) {
 	if (passengerLinkedList.head != NULL) {
         Passenger *passenger = passengerLinkedList.head;
+		cout << setiosflags(ios::left) << setw(25) << "Ho va ten" << setiosflags(ios::left) << setw(20) << "So dien thoai" << setiosflags(ios::left) << setw(20) << "Ngay dat ve" << setiosflags(ios::left) << setw(10) << "So ve"
+			<< setiosflags(ios::left) << setw(15) << "Diem den" << setiosflags(ios::left) << setw(20) << "Bien so" << setiosflags(ios::left) << setw(20) << "Ngay khoi hanh"
+			<< setiosflags(ios::left) << setw(10) << "Gio" << setiosflags(ios::left) << "Gia tien" << endl;
         while (passenger != NULL) {
             out << *passenger;
             passenger = passenger->next;
@@ -72,16 +76,25 @@ istream& operator >> (istream& in, PassengerLinkedList& passengerLinkedList) {
 	cout << "nhap so thu tu xe muon chon: "; in >> choice;
 	AvailableCar selectedCar = availableCarsLinkedList.getNode(choice);
 
-	cout << "xe da chon: "; cout << selectedCar;
+	string carID = selectedCar.getCarID();
+
+	//cout << "xe da chon: "; cout << selectedCar;
+	string c;
+	cout << "So tien can thanh toan: " << carLinkedList.getPrice(carID) * bookingSeats << ". Tiep tuc? (Y/N): "; cin >> c;
+	if (c == "N" || c == "n") {
+		cout << "\033[2J\033[1;1H";
+
+		return in;
+	}
 	cout << "Nhap ten: ";
 	in.ignore();
 	getline(in, fullName);
 	cout << "Nhap so dien thoai: "; in >> phoneNumber;
 
-	string carID = selectedCar.getCarID();
+	
 	int departureTime = selectedCar.getTime();
 	
-	Passenger *newPassenger = new Passenger(fullName, phoneNumber, bookingSeats, destination, carID, departureTime, 
+	Passenger* newPassenger = new Passenger(fullName, phoneNumber, "", bookingSeats, destination, carID, departureTime,
 		departureDate, carLinkedList.getPrice(carID) * bookingSeats);
 	
 	if (passengerLinkedList.head == NULL) {
@@ -91,7 +104,7 @@ istream& operator >> (istream& in, PassengerLinkedList& passengerLinkedList) {
 		passengerLinkedList.head = newPassenger;
 		passengerLinkedList.head->next = temp;
 	}
-	cout << *newPassenger;
+	//cout << *newPassenger;
 
 	passengerLinkedList.writeFile("receipt.txt");
 	scheduleLinkedList.addNode(selectedCar, bookingSeats);
@@ -103,13 +116,13 @@ void PassengerLinkedList::writeFile(string fileName) {
 	fstream output;
 	output.open(fileName, ios::out);
 	Passenger *passengerNode = head;
-	while (passengerNode->next != NULL) {
-		output << passengerNode->fullName << ", " << passengerNode->phoneNumber << ", " << passengerNode->bookedSeats << ", " << passengerNode->destination
-			<< ", " << passengerNode->carID << ", " << passengerNode->departureTime << ", " << passengerNode->departureDate << ", " << passengerNode->totalPrice << endl;
+	while (passengerNode != NULL) {
+		output << passengerNode->fullName << ", " << passengerNode->phoneNumber << ", " << passengerNode->bookingDate.toString() << ", " << passengerNode->bookedSeats << ", " << passengerNode->destination
+			<< ", " << passengerNode->carID << ", " << passengerNode->departureTime << ", " << passengerNode->departureDate.toString() << ", " << passengerNode->totalPrice;
+		if (passengerNode->next != NULL) output << endl;
 		passengerNode = passengerNode->next;
 	}
-	output << passengerNode->fullName << ", " << passengerNode->phoneNumber << ", " << passengerNode->bookedSeats << ", " << passengerNode->destination
-		<< ", " << passengerNode->carID << ", " << passengerNode->departureTime << ", " << passengerNode->departureDate << ", " << passengerNode->totalPrice;
+	
 	output.close();
 }
 

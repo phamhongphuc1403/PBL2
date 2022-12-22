@@ -4,16 +4,18 @@
 #define SCHEDULE_H
 
 #include "node.h"
+#include "date.h"
 
 class Schedule {
 protected:
-	std::string carID, departureDate;
+	std::string carID;
+	Date departureDate;
 	int departureTime, bookedSeats;
 	Schedule* next;
 public:
 	friend class ScheduleLinkedList;
 	friend class AvailableCarsLinkedList;
-
+	friend class CarLinkedList;
 	Schedule(std::string, int, std::string, int);
 	Schedule() {};
 };
